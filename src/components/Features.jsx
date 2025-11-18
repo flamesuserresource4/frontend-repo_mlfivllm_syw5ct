@@ -1,10 +1,10 @@
 import { motion } from 'framer-motion'
-import { Sparkles, Gauge, ScanLine, Smartphone, Layers, Zap } from 'lucide-react'
+import { Sparkles, Gauge, Scan, Smartphone, Layers, Zap } from 'lucide-react'
 
 const features = [
   { icon: Sparkles, title: 'Modern Aesthetics', desc: 'Clean, minimal, and on-brand designs with subtle 3D and tasteful motion.' },
   { icon: Gauge, title: 'Performance First', desc: 'Optimized for speed, accessibility, and SEO to boost your reach.' },
-  { icon: ScanLine, title: '3D & Interactions', desc: 'Spline, micro-interactions and scroll-based animations that delight.' },
+  { icon: Scan, title: '3D & Interactions', desc: 'Spline, micro-interactions and scroll-based animations that delight.' },
   { icon: Smartphone, title: 'Responsive & Mobile', desc: 'Perfect on every screen with thoughtful mobile-first layouts.' },
   { icon: Layers, title: 'CMS or Custom', desc: 'Integrations with your CMS, or fully custom React apps when you need it.' },
   { icon: Zap, title: 'Fast Delivery', desc: 'Agile sprints and clear milestones to ship faster without surprises.' },
