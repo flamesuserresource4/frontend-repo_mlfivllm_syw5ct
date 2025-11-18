@@ -1,11 +1,48 @@
+import React, { useEffect, useState } from 'react'
 import { motion } from 'framer-motion'
 import Spline from '@splinetool/react-spline'
 
+function supportsWebGL2() {
+  try {
+    const canvas = document.createElement('canvas')
+    const gl2 = canvas.getContext && canvas.getContext('webgl2')
+    return !!gl2
+  } catch {
+    return false
+  }
+}
+
 export default function Hero() {
+  const [webgl2, setWebgl2] = useState(null)
+
+  useEffect(() => {
+    setWebgl2(supportsWebGL2())
+  }, [])
+
   return (
     <section className="relative overflow-hidden">
       <div className="absolute inset-0">
-        <Spline scene="https://prod.spline.design/VJLoxp84lCdVfdZu/scene.splinecode" style={{ width: '100%', height: '100%' }} />
+        {webgl2 === null ? (
+          <div className="w-full h-full bg-gradient-to-br from-slate-900 via-slate-800 to-slate-900" />
+        ) : webgl2 ? (
+          <Spline scene="https://prod.spline.design/VJLoxp84lCdVfdZu/scene.splinecode" style={{ width: '100%', height: '100%' }} />
+        ) : (
+          <div className="relative w-full h-full bg-gradient-to-br from-slate-900 via-slate-800 to-slate-900">
+            <div
+              className="absolute inset-0 opacity-40"
+              style={{
+                backgroundImage:
+                  'radial-gradient(circle at 20% 20%, rgba(59,130,246,0.35) 0, transparent 40%), radial-gradient(circle at 80% 30%, rgba(147,197,253,0.25) 0, transparent 45%), radial-gradient(circle at 50% 80%, rgba(14,165,233,0.25) 0, transparent 50%)',
+              }}
+            />
+            <div className="relative z-10 flex h-full items-center justify-center">
+              <div className="mx-6 rounded-2xl border border-white/10 bg-white/5 px-6 py-4 text-center text-blue-100 backdrop-blur">
+                <p className="text-sm">Interactive 3D preview requires a modern browser with WebGL 2 support.</p>
+                <p className="mt-1 text-xs text-blue-200/80">You’re seeing a lightweight fallback experience.</p>
+              </div>
+            </div>
+          </div>
+        )}
       </div>
 
       {/* Gradient overlay to enhance contrast, non-blocking */}
